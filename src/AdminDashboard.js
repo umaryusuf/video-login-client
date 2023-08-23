@@ -5,8 +5,6 @@ import Notifications from "./components/Notifications";
 import Options from "./components/Options";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { ContextProvider } from "./SocketContext";
-
 const useStyles = makeStyles((theme) => ({
     appBar: {
         borderRadius: 15,

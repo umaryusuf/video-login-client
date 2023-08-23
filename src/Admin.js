@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { SocketContext } from './SocketContext'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
