@@ -50,11 +50,11 @@ const Admin = () => {
     const handleLogin = () => {
         console.log("login in...", username, password);
 
-        if(username == "" || password == "") {
+        if(username === "" || password === "") {
             setMessage("Username and password cannot be empty")
         } else {
             
-            if(username == login.username && password == login.password) {
+            if(username === login.username && password === login.password) {
 
                 console.log('logged in')
                 setMessage("")
