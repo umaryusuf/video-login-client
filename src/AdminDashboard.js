@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const App = () => {
+const AdminDashboard = () => {
     const classes = useStyles();
     return (
         <div className={classes.wrapper}>
@@ -39,7 +39,7 @@ const App = () => {
                 color="inherit"
             >
                 <Typography variant="h2" align="center">
-                    User Login App
+                    Admin Dashboard
                 </Typography>
             </AppBar>
             <VideoPlayer />
@@ -50,4 +50,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default AdminDashboard;
