@@ -7,7 +7,7 @@ import { SocketContext } from '../SocketContext'
 
 
 const useStyles = makeStyles((theme) => ({
-     root: {
+    root: {
         display: 'flex',
         // flexDirection: 'column',
     },
@@ -37,38 +37,39 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const Options = ({children}) => {
+const Options = ({ children }) => {
 
-    const {me, name, setName, callAccepted, callEnded, leaveCall, callUser} = useContext(SocketContext);
+    const { me, name, setName, callAccepted, isAdmin, callEnded, leaveCall, callUser } = useContext(SocketContext);
     const [idToCall, setIdToCall] = useState('');
-    const classes = useStyles();  
+    const classes = useStyles();
 
-    return ( 
+    return (
         <Container className={classes.container}>
             <Paper elevation={10} className={classes.paper}>
                 <form className={classes.root} noValidate autoComplete='off'>
                     <Grid container className={classes.gridContainer}>
                         <Grid item xs={12} md={12} className={classes.padding}>
                             <Typography variant='h6'>Account Info</Typography>
-                            <TextField label="Name" value={name} onChange={e => setName(e.target.value)} fullWidth /> 
-                            <CopyToClipboard text={me} className={classes.margin}>
-                                <Button variant='contained' fullWidth color='primary' startIcon={<Assignment fontSize='large'/>}>
+                            <TextField label="Name" value={name} onChange={e => setName(e.target.value)} fullWidth />
+                            {isAdmin && <CopyToClipboard text={me} className={classes.margin}>
+                                <Button variant='contained' fullWidth color='primary' startIcon={<Assignment fontSize='large' />}>
                                     Copy Server ID
                                 </Button>
-                            </CopyToClipboard>
+                            </CopyToClipboard>}
+
                         </Grid>
                     </Grid>
                     <Grid container className={classes.gridContainer}>
                         <Grid item xs={12} md={12} className={classes.padding}>
                             <Typography variant='h6'>Make a Call</Typography>
-                            <TextField label="ID to login" value={idToCall} onChange={e => setIdToCall(e.target.value)} fullWidth /> 
-                            { callAccepted && !callEnded ? (
-                                <Button variant='contained' className={classes.margin} fullWidth color='primary' startIcon={<PhoneDisabled fontSize='large'/>} onClick={() => leaveCall()}>Hang Up</Button>
-                            ) : ( 
-                                <Button variant='contained' className={classes.margin} fullWidth color='primary' startIcon={<Phone fontSize='large'/>} onClick={() => callUser(idToCall)}>Login</Button>
-                            )} 
+                            <TextField label="ID to login" value={idToCall} onChange={e => setIdToCall(e.target.value)} fullWidth />
+                            {callAccepted && !callEnded ? (
+                                <Button variant='contained' className={classes.margin} fullWidth color='primary' startIcon={<PhoneDisabled fontSize='large' />} onClick={() => leaveCall()}>Hang Up</Button>
+                            ) : (
+                                <Button variant='contained' className={classes.margin} fullWidth color='primary' startIcon={<Phone fontSize='large' />} onClick={() => callUser(idToCall)}>Login</Button>
+                            )}
                         </Grid>
-                    </Grid> 
+                    </Grid>
                 </form>
                 {children}
             </Paper>
