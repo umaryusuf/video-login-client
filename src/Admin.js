@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Typography, AppBar, Grid,Paper, Avatar, TextField, Button } from "@material-ui/core";
+import { Typography, AppBar, Grid, Paper, Avatar, TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { SocketContext } from './SocketContext'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -50,17 +50,18 @@ const Admin = () => {
     const handleLogin = () => {
         console.log("login in...", username, password);
 
-        if(username === "" || password === "") {
+        if (username === "" || password === "") {
             setMessage("Username and password cannot be empty")
         } else {
-            
-            if(username === login.username && password === login.password) {
+
+            if (username === login.username && password === login.password) {
 
                 console.log('logged in')
                 setMessage("")
 
                 setIsAdmin(true);
-                
+                localStorage.setItem('isAdmin', true);
+
                 navigate('/admin-dashboard')
             } else {
                 setMessage('Invalid username or password')
@@ -68,9 +69,9 @@ const Admin = () => {
         }
     }
 
-    const paperStyle={padding: 20, margin: "20px auto"}
-    const avatarStyle={backgroundColor:'#1bbd7e'}
-    const btnstyle={margin:'30px 0'}
+    const paperStyle = { padding: 20, margin: "20px auto" }
+    const avatarStyle = { backgroundColor: '#1bbd7e' }
+    const btnstyle = { margin: '30px 0' }
     const classes = useStyles();
     return (
         <div className={classes.wrapper}>
@@ -89,16 +90,16 @@ const Admin = () => {
             <Grid>
                 <Paper elevation={10} style={paperStyle}>
                     <Grid align='center'>
-                        <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+                        <Avatar style={avatarStyle}><LockOutlinedIcon /></Avatar>
                         <h2 className={classes.margin}>Sign In</h2>
                     </Grid>
-                    <TextField label='Username' value={username} onChange={e => setUsername(e.target.value)} className={classes.margin} placeholder='Enter username' variant="outlined" fullWidth required/>
-                    <TextField label='Password' value={password} onChange={e => setPassword(e.target.value)} className={classes.margin} placeholder='Enter password' type='password' variant="outlined" fullWidth required/>
+                    <TextField label='Username' value={username} onChange={e => setUsername(e.target.value)} className={classes.margin} placeholder='Enter username' variant="outlined" fullWidth required />
+                    <TextField label='Password' value={password} onChange={e => setPassword(e.target.value)} className={classes.margin} placeholder='Enter password' type='password' variant="outlined" fullWidth required />
                     <Button type='button' onClick={handleLogin} color='primary' variant="contained" className={classes.margin} style={btnstyle} fullWidth>Sign in</Button>
 
                 </Paper>
             </Grid>
-            
+
         </div>
     );
 };

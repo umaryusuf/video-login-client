@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Typography, AppBar } from "@material-ui/core";
 import VideoPlayer from "./components/VideoPlayer";
 import Notifications from "./components/Notifications";
 import Options from "./components/Options";
 import { makeStyles } from "@material-ui/core/styles";
+import { SocketContext } from './SocketContext'
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
@@ -28,6 +29,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AdminDashboard = () => {
+    const { setIsAdmin } = useContext(SocketContext);
+    const isAdmin = localStorage.getItem('isAdmin')
+
+    setIsAdmin(isAdmin)
+
+
     const classes = useStyles();
     return (
         <div className={classes.wrapper}>
